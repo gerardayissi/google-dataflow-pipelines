@@ -13,25 +13,21 @@ pipeline {
                    '''
                }
            }
-      /* stage('Build Dataflow Template') {
+           stage('Build Dataflow Template') {
                steps {
-                  sh 'cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub'
-                  sh 'echo "current buld directory"'
-                  sh 'pwd'
                   sh '''
                   cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub
                   ./gcs-to-pubsub-build-template.sh
                   '''
                }
-            } */
-            stage('Build Dataflow Template') {
+            }
+           stage('Build Dataflow Template') {
             steps {
-                                withEnv(['GCLOUD_PATH=/Users/hgo2/Downloads/google-cloud-sdk/bin']){
-                              sh '''
-                              $GCLOUD_PATH/gcs-to-pubsub-run-job.sh
-                              '''
-                              }
-                           }
+                  sh '''
+                  cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub
+                  ./gcs-to-pubsub-run-job.sh
+                  '''
+               }
                         }
             /* stage('Build Dataflow Template') {
                            steps  {
