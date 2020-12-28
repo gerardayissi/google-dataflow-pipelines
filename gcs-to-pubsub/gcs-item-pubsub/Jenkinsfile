@@ -21,7 +21,7 @@ pipeline {
                   '''
                }
             }
-           stage('Build Dataflow Template') {
+           stage('Execute Pipeline Job') {
             steps {
                   sh '''
                   cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub
