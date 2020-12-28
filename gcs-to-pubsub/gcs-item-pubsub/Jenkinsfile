@@ -2,12 +2,12 @@ pipeline {
    agent any
 
    stages {
-      stage('Set Default Project and Authorization Key') {
+      /* stage('Set Default Project and Authorization Key') {
          steps {
             sh 'gcloud auth activate-service-account project-service-account@tst1-integration-3ca6.iam.gserviceaccount.com --key-file /Users/hgo2/google/keys/tbi-mao-tst1.json' // set auth key
             sh 'gcloud config set project tst1-integration-3ca6'
          }
-      }
+      } */
       stage('Build Dataflow Template') {
                steps {
                   sh './gcs-to-pubsub-build-template.sh' // mvn command to build the template
