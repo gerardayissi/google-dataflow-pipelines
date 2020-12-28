@@ -24,7 +24,18 @@ pipeline {
                   '''
                }
             } */
-      stage('Run Dataflow Pipeline Job') {
+            stage('Build Dataflow Template') {
+                           steps  {
+                              withEnv(['GCLOUD_PATH=/Users/hgo2/Downloads/google-cloud-sdk/bin']){
+                              sh '''
+                              $GCLOUD_PATH/gcloud dataflow jobs run gerard-gcs-to-pubsub-sample-001 \
+                              --region=us-east4  \
+                              --gcs-location gs://tst1-integration-3ca6-gerard/pipeline/template/template-gcs-sample-001
+                              '''
+                              }
+                           }
+                        }
+      /* stage('Run Dataflow Pipeline Job') {
           steps {
               sh 'cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub'
               sh '''
@@ -32,6 +43,6 @@ pipeline {
               ./gcs-to-pubsub-run-job.sh
               '''
           }
-      }
+      } */
    }
 }
