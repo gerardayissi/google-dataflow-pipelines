@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# run the following command to get gcloud path:  dirname $(which gcloud)
 export GCLOUD_PATH=/Users/hgo2/Downloads/google-cloud-sdk/bin
 
 ${GCLOUD_PATH}/gcloud dataflow jobs run gerard-gcs-to-pubsub-sample-001 \
