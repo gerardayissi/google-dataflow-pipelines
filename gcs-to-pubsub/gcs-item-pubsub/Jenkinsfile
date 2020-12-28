@@ -11,13 +11,13 @@ pipeline {
       stage('Build Dataflow Template') {
                steps {
                   sh 'cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub'
-                  sh 'gcs-to-pubsub-build-template.sh' // mvn command to build the template
+                  sh './gcs-to-pubsub-build-template.sh' // mvn command to build the template
                }
             }
       stage('Run Dataflow Pipeline Job') {
           steps {
               sh 'cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub'
-              sh 'gcs-to-pubsub-run-job.sh'
+              sh './gcs-to-pubsub-run-job.sh'
           }
       }
    }
