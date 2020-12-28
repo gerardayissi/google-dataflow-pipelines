@@ -1,10 +1,8 @@
 #!/bin/bash
 
-cd /Users/hgo2/IdeaProjects/google-dataflow-pipelines/gcs-to-pubsub/gcs-item-pubsub
-
 export PROJECT_ID=tst1-integration-3ca6
 
-mvn compile exec:java \
+mvn compile exec:java \ls
 -Dexec.mainClass=com.google.cloud.gcsitempubsub \
 -Dexec.cleanupDaemonThreads=false \
 -Dexec.args="--project=${PROJECT_ID} \
