@@ -17,6 +17,7 @@ pipeline {
      stage ('Compile Maven Project') {
       steps {
         git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
+        // using the Pipeline Maven plugin we can set maven configuration settings, publish test results, and annotate the Jenkins console
         withMaven (
         maven: 'Maven 3.6.3',
         jdk:   'jdk8'
@@ -26,5 +27,18 @@ pipeline {
         }
       }
     }
+    stage ('Verify') {
+          steps {
+            git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
+            // using the Pipeline Maven plugin we can set maven configuration settings, publish test results, and annotate the Jenkins console
+            withMaven (
+            maven: 'Maven 3.6.3',
+            jdk:   'jdk8'
+            ){
+              //sh "mvn clean verify"
+              sh "mvn clean verify"
+            }
+          }
+        }
 }
 }
