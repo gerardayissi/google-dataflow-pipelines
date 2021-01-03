@@ -7,9 +7,9 @@ pipeline {
    stages {
    stage('Build') {
        steps {
-           sh 'echo "Hello World"'
+           sh 'echo "building google datflow pipelines"'
            sh '''
-               echo "Multiline shell steps works too"
+               echo "listing files in directory"
                ls -lah
            '''
        }
@@ -27,18 +27,28 @@ pipeline {
         }
       }
     }
-    stage ('Verify') {
-          steps {
-            git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
-            // using the Pipeline Maven plugin we can set maven configuration settings, publish test results, and annotate the Jenkins console
-            withMaven (
-            maven: 'Maven 3.6.3',
-            jdk:   'jdk8'
-            ){
-              //sh "mvn clean verify"
-              sh "mvn clean verify"
-            }
-          }
-        }
+    stage('Build Template') {
+           steps {
+               sh 'echo "build template"'
+               sh '''
+                   mvn compile exec:java \
+                   -Dexec.mainClass=com.google.cloud.gcsitempubsub \
+                   -Dexec.cleanupDaemonThreads=false \
+                   -Dexec.args="--project=tst1-integration-3ca6 \
+                   --region=us-east4 \
+                   --stagingLocation=gs://tst1-integration-3ca6-gerard/pipeline/staging \
+                   --templateLocation=gs://tst1-integration-3ca6-gerard/pipeline/template/template-gcs-sample-001 \
+                   --serviceAccount=project-service-account@tst1-integration-3ca6.iam.gserviceaccount.com \
+                   --subnetwork=https://www.googleapis.com/compute/v1/projects/network-b2b9/regions/us-east4/subnetworks/np-integration4 \
+                   --numWorkers=10 \
+                   --autoscalingAlgorithm=THROUGHPUT_BASED \
+                   --workerMachineType=n1-standard-2 \
+                   --enableStreamingEngine=true \
+                   --maxNumWorkers=10 \
+                   --filesToStage=gcs-to-pubsub/gcs-item-pubsub/target/gcs-item-pubsub-1.0.jar \
+                   --runner=DataflowRunner"
+               '''
+           }
+       }
 }
 }
