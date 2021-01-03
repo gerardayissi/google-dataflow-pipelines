@@ -1,4 +1,10 @@
 node {
+agent any
+       tools {
+           maven 'Maven 3.6.3'
+           jdk 'jdk8'
+       }
+stages {
   stage ('Build') {
     git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
     withMaven (
@@ -9,4 +15,5 @@ node {
       sh "mvn install"
     } // withMaven will discover the generated Maven artifacts, JUnit Surefire & FailSafe reports and FindBugs reports
   }
+}
 }
