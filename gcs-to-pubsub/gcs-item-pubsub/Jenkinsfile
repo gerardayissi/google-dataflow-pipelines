@@ -5,16 +5,7 @@ pipeline {
            jdk 'jdk8'
        }
    stages {
-   stage('Build') {
-       steps {
-           sh 'echo "building google datflow pipelines"'
-           sh '''
-               echo "listing files in directory"
-               ls -lah
-           '''
-       }
-   }
-     stage ('Compile Maven Project') {
+     stage ('Build Maven Project') {
       steps {
         git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
         // using the Pipeline Maven plugin we can set maven configuration settings, publish test results, and annotate the Jenkins console
@@ -27,9 +18,8 @@ pipeline {
         }
       }
     }
-    stage('Build Template') {
+    stage('Create Dataflow Template') {
            steps {
-               sh 'echo "build template"'
                sh '''
                    cd gcs-to-pubsub/gcs-item-pubsub
 
@@ -52,5 +42,14 @@ pipeline {
                   '''
            }
        }
+       stage('Deploy Pipeline Job') {
+          steps {
+              sh '''
+                  /Users/hgo2/Downloads/google-cloud-sdk/bin/gcloud dataflow jobs run gerard-gcs-to-pubsub-sample-001 \
+                  --region=us-east4  \
+                  --gcs-location gs://tst1-integration-3ca6-gerard/pipeline/template/template-gcs-sample-001
+              '''
+          }
+      }
 }
 }
