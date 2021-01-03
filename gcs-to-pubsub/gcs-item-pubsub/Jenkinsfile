@@ -5,6 +5,15 @@ pipeline {
            jdk 'jdk8'
        }
    stages {
+     stage('Build') {
+                 steps {
+                     sh 'echo "Hello World"'
+                     sh '''
+                         echo "Multiline shell steps works too"
+                         ls -lah
+                     '''
+                 }
+             }
      stage ('Compile Maven Project') {
       node {
         git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
