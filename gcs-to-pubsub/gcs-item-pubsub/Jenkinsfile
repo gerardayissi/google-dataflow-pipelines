@@ -4,7 +4,28 @@ pipeline {
            maven 'Maven 3.6.3'
            jdk 'jdk8'
        }
+   environment {
+           ARTIFACT_PATH = 'gcs-to-pubsub/gcs-item-pubsub'
+           PROJECT_ID   = 'tst1-integration-3ca6'
+           GCLOUD_PATH    = '/Users/hgo2/Downloads/google-cloud-sdk/bin'
+   }
+   parameters {
+      string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
+      text(name: 'BIOGRAPHY', defaultValue: '', description: 'Enter some information about the person')
+      booleanParam(name: 'TOGGLE', defaultValue: true, description: 'Toggle this value')
+      choice(name: 'CHOICE', choices: ['One', 'Two', 'Three'], description: 'Pick something')
+      password(name: 'PASSWORD', defaultValue: 'SECRET', description: 'Enter a password')
+  }
    stages {
+     stage('Example') {
+         steps {
+             echo "Hello ${params.PERSON}"
+             echo "Biography: ${params.BIOGRAPHY}"
+             echo "Toggle: ${params.TOGGLE}"
+             echo "Choice: ${params.CHOICE}"
+             echo "Password: ${params.PASSWORD}"
+         }
+     }
      stage ('Build Maven Project') {
       steps {
         git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
@@ -21,12 +42,12 @@ pipeline {
     stage('Create Dataflow Template') {
            steps {
                sh '''
-                   cd gcs-to-pubsub/gcs-item-pubsub
+                   cd ${ARTIFACT_PATH}
 
                    mvn compile exec:java \
                    -Dexec.mainClass=com.google.cloud.gcsitempubsub \
                    -Dexec.cleanupDaemonThreads=false \
-                   -Dexec.args="--project=tst1-integration-3ca6 \
+                   -Dexec.args="--project=${PROJECT_ID} \
                    --region=us-east4 \
                    --stagingLocation=gs://tst1-integration-3ca6-gerard/pipeline/staging \
                    --templateLocation=gs://tst1-integration-3ca6-gerard/pipeline/template/template-gcs-sample-001 \
@@ -45,7 +66,7 @@ pipeline {
        stage('Deploy Pipeline Job') {
           steps {
               sh '''
-                  /Users/hgo2/Downloads/google-cloud-sdk/bin/gcloud dataflow jobs run gerard-gcs-to-pubsub-sample-001 \
+                  ${GCLOUD_PATH}/gcloud dataflow jobs run gerard-gcs-to-pubsub-sample-001 \
                   --region=us-east4  \
                   --gcs-location gs://tst1-integration-3ca6-gerard/pipeline/template/template-gcs-sample-001
               '''
