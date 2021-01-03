@@ -31,6 +31,10 @@ pipeline {
            steps {
                sh 'echo "build template"'
                sh '''
+                      echo "current directory"
+                      pwd
+                  '''
+               sh '''
                    mvn compile exec:java \
                    -Dexec.mainClass=com.google.cloud.gcsitempubsub \
                    -Dexec.cleanupDaemonThreads=false \
