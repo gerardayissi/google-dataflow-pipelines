@@ -5,7 +5,7 @@ pipeline {
            jdk 'jdk8'
        }
    stages {
-     stage ('Build') {
+     stage ('Compile Maven Project') {
       node {
         git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
         withMaven (
