@@ -31,10 +31,8 @@ pipeline {
            steps {
                sh 'echo "build template"'
                sh '''
-                      echo "current directory"
-                      pwd
-                  '''
-               sh '''
+                   cd gcs-to-pubsub/gcs-item-pubsub
+
                    mvn compile exec:java \
                    -Dexec.mainClass=com.google.cloud.gcsitempubsub \
                    -Dexec.cleanupDaemonThreads=false \
@@ -49,9 +47,9 @@ pipeline {
                    --workerMachineType=n1-standard-2 \
                    --enableStreamingEngine=true \
                    --maxNumWorkers=10 \
-                   --filesToStage=gcs-to-pubsub/gcs-item-pubsub/target/gcs-item-pubsub-1.0.jar \
+                   --filesToStage=target/gcs-item-pubsub-1.0.jar \
                    --runner=DataflowRunner"
-               '''
+                  '''
            }
        }
 }
