@@ -6,7 +6,7 @@ pipeline {
        }
    stages {
      stage ('Compile Maven Project') {
-      node {
+      steps {
         git url: 'https://github.com/gerardayissi/google-dataflow-pipelines.git'
         withMaven (
         maven: 'Maven 3.6.3',
