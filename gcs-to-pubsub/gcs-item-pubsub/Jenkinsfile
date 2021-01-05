@@ -8,6 +8,8 @@ pipeline {
            ARTIFACT_PATH = 'gcs-to-pubsub/gcs-item-pubsub'
            PROJECT_ID   = 'tst1-integration-3ca6'
            GCLOUD_PATH    = '/Users/hgo2/Downloads/google-cloud-sdk/bin'
+           AUTH_JSON    = '/Users/hgo2/google/keys/tbi-mao-tst1.json'
+           SERVICE_ACCOUNT    = 'project-service-account@tst1-integration-3ca6.iam.gserviceaccount.com'
    }
    parameters {
       string(name: 'PERSON', defaultValue: 'Mr Jenkins', description: 'Who should I say hello to?')
@@ -66,6 +68,10 @@ pipeline {
        stage('Deploy Pipeline Job') {
           steps {
               sh '''
+                  ${GCLOUD_PATH}/gcloud auth activate-service-account ${SERVICE_ACCOUNT} --key-file ${AUTH_JSON}
+                  ${GCLOUD_PATH}/gcloud config set project ${PROJECT_ID}
+                  export GOOGLE_APPLICATION_CREDENTIALS=${AUTH_JSON}
+
                   ${GCLOUD_PATH}/gcloud dataflow jobs run gerard-gcs-to-pubsub-sample-001 \
                   --region=us-east4  \
                   --gcs-location gs://tst1-integration-3ca6-gerard/pipeline/template/template-gcs-sample-001
