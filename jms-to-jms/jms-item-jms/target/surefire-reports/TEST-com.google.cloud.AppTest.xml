@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.google.cloud.AppTest" time="0.025" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="com.google.cloud.AppTest" time="0.026" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="gopherProxySet" value="false"/>
     <property name="awt.toolkit" value="sun.lwawt.macosx.LWCToolkit"/>
@@ -17,7 +17,7 @@
     <property name="user.country" value="US"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib"/>
-    <property name="sun.java.command" value="/Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/surefire/surefirebooter619180324175129882.jar /Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/surefire 2021-01-02T22-27-05_129-jvmRun1 surefire7560656415720287330tmp surefire_71868590499335635695tmp"/>
+    <property name="sun.java.command" value="/Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/surefire/surefirebooter8386438853509606489.jar /Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/surefire 2021-01-05T11-34-44_316-jvmRun1 surefire7353280876781153454tmp surefire_72820469275082417358tmp"/>
     <property name="http.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="surefire.test.class.path" value="/Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/test-classes:/Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/classes:/Users/hgo2/.m2/repository/junit/junit/4.11/junit-4.11.jar:/Users/hgo2/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -31,7 +31,7 @@
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.CGraphicsEnvironment"/>
-    <property name="surefire.real.class.path" value="/Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/surefire/surefirebooter619180324175129882.jar"/>
+    <property name="surefire.real.class.path" value="/Users/hgo2/IdeaProjects/google-dataflow-pipelines/jms-to-jms/jms-item-jms/target/surefire/surefirebooter8386438853509606489.jar"/>
     <property name="sun.boot.class.path" value="/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/resources.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/rt.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/sunrsasign.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jsse.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jce.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/charsets.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/lib/jfr.jar:/Library/Java/JavaVirtualMachines/jdk1.8.0_211.jdk/Contents/Home/jre/classes"/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
